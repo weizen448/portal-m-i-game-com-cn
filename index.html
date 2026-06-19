@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱游戏 — 知识库入口 · 资料索引</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f2f7fa;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1d2b36;
+      line-height: 1.6;
+      padding: 2rem 1.25rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* 目录感网格布局 */
+    .grid-overview {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin: 2.5rem 0 2rem;
+    }
+
+    @media (min-width: 640px) {
+      .grid-overview {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 900px) {
+      .grid-overview {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.5rem 1.25rem;
+      box-shadow: 0 4px 12px rgba(0, 40, 50, 0.06), 0 1px 3px rgba(0, 30, 40, 0.03);
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+      border: 1px solid #dde9f0;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 70, 90, 0.08);
+      border-color: #9cc6d4;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: #0b3b47;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 3px solid #b6d8e5;
+      display: inline-block;
+    }
+
+    .badge {
+      background: #d7ecf5;
+      color: #0f4e5e;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+
+    .accent-green {
+      color: #1b7a6b;
+    }
+
+    .accent-teal {
+      color: #197a8c;
+    }
+
+    .text-muted {
+      color: #3f5b66;
+      font-size: 0.92rem;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 0.7rem;
+      margin: 1rem 0 0.25rem;
+      list-style: none;
+    }
+
+    .tag-list li {
+      background: #edf5f9;
+      padding: 0.15rem 0.7rem;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      color: #1f5767;
+      font-weight: 500;
+    }
+
+    .info-strip {
+      background: #e5f2f7;
+      border-left: 5px solid #2d9b8b;
+      padding: 1.2rem 1.5rem;
+      border-radius: 12px;
+      margin: 1.8rem 0 2.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.5rem 1.2rem;
+    }
+
+    .info-strip strong {
+      color: #0a3d44;
+    }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 0.45rem 1.2rem;
+      border: 1.5px solid #2d9b8b;
+      border-radius: 40px;
+      color: #1b7365;
+      font-weight: 500;
+      font-size: 0.85rem;
+      background: transparent;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-outline:hover {
+      background: #2d9b8b;
+      color: #fff;
+      border-color: #2d9b8b;
+    }
+
+    .faq-preview {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.6rem 1.5rem;
+      margin: 2.4rem 0 1.8rem;
+      box-shadow: 0 2px 10px rgba(0, 35, 45, 0.04);
+      border: 1px solid #d1e3eb;
+    }
+
+    .faq-preview details {
+      margin-bottom: 0.6rem;
+      border-bottom: 1px dashed #d4e3ec;
+      padding: 0.5rem 0;
+    }
+
+    .faq-preview details:last-of-type {
+      border-bottom: 0;
+    }
+
+    .faq-preview summary {
+      font-weight: 600;
+      color: #0f4553;
+      cursor: pointer;
+      padding: 0.2rem 0;
+      font-size: 0.95rem;
+    }
+
+    .faq-preview summary::marker {
+      color: #2d9b8b;
+    }
+
+    .faq-preview p {
+      margin: 0.6rem 0 0.2rem 1.2rem;
+      color: #2a4b57;
+      font-size: 0.9rem;
+    }
+
+    .hero-mini {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-mini h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #0a3743;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-mini span {
+      background: #b6d8e5;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      color: #174c5a;
+      font-weight: 500;
+    }
+
+    .subhead {
+      color: #2c5b68;
+      font-size: 1rem;
+      margin-top: 0.1rem;
+      max-width: 70%;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: linear-gradient(to right, #cde0e9, transparent);
+      margin: 1.5rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.8rem;
+      color: #55727e;
+      text-align: center;
+      margin-top: 2.5rem;
+      border-top: 1px solid #d2e2eb;
+      padding-top: 1.8rem;
+    }
+
+    a {
+      color: #197a8c;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    a:hover {
+      color: #0b4f5e;
+      text-decoration: underline;
+    }
+
+    /* 移动端优化 */
+    @media (max-width: 480px) {
+      body {
+        padding: 1rem 0.9rem;
+      }
+      .hero-mini h1 {
+        font-size: 1.6rem;
+      }
+      .subhead {
+        max-width: 100%;
+      }
+      .info-strip {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 标题区 / 目录标识 -->
+  <div class="hero-mini">
+    <div>
+      <h1>知识库·资料索引</h1>
+      <div class="subhead">基于<a href="https://portal-m-i-game.com.cn">爱游戏</a>内容体系的信息整理与分类导航</div>
+    </div>
+    <span>v2.4 · 索引版</span>
+  </div>
+
+  <p style="color: #3b5f6b; margin: 0.5rem 0 0.2rem; font-size: 0.95rem;">
+    本页面向资料查阅者，提供模块化目录、常见问题摘要及相关提示。<br class="hide-mobile">
+    涵盖机制说明、场景速查、版本归档与社区指引。
+  </p>
+
+  <!-- 网格卡片：目录感布局 -->
+  <div class="grid-overview">
+
+    <div class="card">
+      <span class="badge">📂 资料分区</span>
+      <h3>系统机制</h3>
+      <ul class="tag-list">
+        <li>回合流程</li>
+        <li>资源循环</li>
+        <li>事件链</li>
+        <li>数值阈值</li>
+        <li>状态表</li>
+      </ul>
+      <p class="text-muted" style="margin-top: 0.8rem;">
+        包括核心规则、触发条件与交互逻辑，适合策略查阅。
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="badge">📁 场景索引</span>
+      <h3>环境 · 任务</h3>
+      <ul class="tag-list">
+        <li>初始地带</li>
+        <li>中枢区域</li>
+        <li>边界遗址</li>
+        <li>隐藏节点</li>
+        <li>动态事件</li>
+      </ul>
+      <p class="text-muted" style="margin-top: 0.8rem;">
+        各场景产出、解锁条件与关联任务速查。
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="badge">📖 版本归档</span>
+      <h3>更新 · 记录</h3>
+      <ul class="tag-list">
+        <li>数据调整</li>
+        <li>界面变更</li>
+        <li>新增内容</li>
+        <li>问题修复</li>
+        <li>历史对照</li>
+      </ul>
+      <p class="text-muted" style="margin-top: 0.8rem;">
+        按版本号整理的修改条目与迁移说明。
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="badge">🧩 组件参考</span>
+      <h3>界面 · 控件</h3>
+      <ul class="tag-list">
+        <li>仪表盘</li>
+        <li>快捷栏</li>
+        <li>通知类型</li>
+        <li>筛选面板</li>
+        <li>状态指示</li>
+      </ul>
+      <p class="text-muted" style="margin-top: 0.8rem;">
+        组件功能、交互反馈与自定义说明。
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="badge">🔗 关联资源</span>
+      <h3>外部索引</h3>
+      <ul class="tag-list">
+        <li>协议文档</li>
+        <li>社区归档</li>
+        <li>工具集</li>
+        <li>样式指南</li>
+        <li>数据词典</li>
+      </ul>
+      <p class="text-muted" style="margin-top: 0.8rem;">
+        指向已公开的参考资料与维护站点。
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="badge">🧭 导航提示</span>
+      <h3>快速定位</h3>
+      <ul class="tag-list">
+        <li>关键词检索</li>
+        <li>层级目录</li>
+        <li>标签筛选</li>
+        <li>时间排序</li>
+        <li>相关推荐</li>
+      </ul>
+      <p class="text-muted" style="margin-top: 0.8rem;">
+        提高信息查找效率的几种路径说明。
+      </p>
+    </div>
+  </div>
+
+  <!-- 提示区 + 相关信息区合并样式 -->
+  <div class="info-strip">
+    <strong>📌 提示</strong>
+    <span>优先查阅基础索引后再进入详细页面；部分资料需要对照版本号使用。</span>
+    <span style="color: #1b6b5f;">|</span>
+    <strong>相关信息</strong>
+    <span>当前索引覆盖范围基于 <a href="https://portal-m-i-game.com.cn">爱游戏</a> 公开内容整理，持续补充中。</span>
+    <a href="#" class="btn-outline" style="margin-left: auto;">浏览分类</a>
+  </div>
+
+  <!-- FAQ 摘要区 -->
+  <div class="faq-preview">
+    <h3 style="font-weight: 600; font-size: 1.1rem; color: #0b3b47; margin-bottom: 0.8rem;">❓ 常见问题摘要</h3>
+
+    <details>
+      <summary>资料索引的更新频率？</summary>
+      <p>通常跟随版本迭代进行同步，主要变更会在索引页顶部标注日期。小范围修正随时推送。</p>
+    </details>
+
+    <details>
+      <summary>如何快速定位某个机制的具体数值？</summary>
+      <p>建议先查看「系统机制」卡片中的标签，然后进入对应子页面查找。索引页提供大类跳转。</p>
+    </details>
+
+    <details>
+      <summary>场景索引是否包含隐藏内容？</summary>
+      <p>索引条目覆盖已知可公开场景，隐藏节点会在确认后补充至对应卡片列表。</p>
+    </details>
+
+    <details>
+      <summary>版本归档能追溯到多早？</summary>
+      <p>当前保留最近四个主要版本的完整变更记录，更早内容以摘要形式存在。</p>
+    </details>
+
+    <details>
+      <summary>有反馈或贡献资料的渠道吗？</summary>
+      <p>可通过相关资源区的链接提交问题或补充材料，处理周期约 1～3 个工作日。</p>
+    </details>
+
+    <p style="margin-top: 1rem; font-size: 0.88rem; color: #2f5b68;">
+      更多细节请直接前往 <a href="https://portal-m-i-game.com.cn">爱游戏</a> 查阅对应模块。
+    </p>
+  </div>
+
+  <!-- 额外相关信息区（紧凑） -->
+  <div style="display: flex; flex-wrap: wrap; gap: 0.8rem 1.5rem; background: #e1eff5; border-radius: 14px; padding: 0.9rem 1.5rem; margin-bottom: 0.5rem; align-items: baseline;">
+    <span style="font-weight: 600; color: #0b414e;">相关信息</span>
+    <span>· 目录结构遵循层级编号 · 标签可交叉筛选</span>
+    <span>· 索引内容以 <a href="https://portal-m-i-game.com.cn">爱游戏</a> 为基准</span>
+    <span>· 建议使用现代浏览器</span>
+  </div>
+
+  <!-- 页脚 -->
+  <div class="footer-note">
+    知识库入口 · 资料整理 · <a href="https://portal-m-i-game.com.cn">爱游戏</a> · 版本索引 2.4
+  </div>
+
+</div>
+</body>
+</html>

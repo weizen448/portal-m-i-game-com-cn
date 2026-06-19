@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://weizen448.github.io/portal-m-i-game-com-cn/sitemap.xml
