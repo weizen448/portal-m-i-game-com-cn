@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简明指南 · pg模拟器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f9f8f6;
+            color: #1d1b1a;
+            font-family: "Noto Serif SC", "Source Han Serif SC", "Times New Roman", Georgia, serif;
+            line-height: 1.75;
+            padding: 3rem 1.5rem 5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 640px;
+            width: 100%;
+        }
+
+        /* 标题区 */
+        .hero-title {
+            font-size: 2.4rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.2rem;
+            line-height: 1.2;
+            border-left: 4px solid #9b8b7c;
+            padding-left: 1.2rem;
+        }
+
+        .hero-sub {
+            font-size: 1rem;
+            color: #6f6a64;
+            margin-bottom: 2.8rem;
+            padding-left: 1.6rem;
+            font-style: italic;
+        }
+
+        /* 正文窄段 */
+        .text-block {
+            margin-bottom: 2.2rem;
+        }
+
+        .text-block p {
+            margin-bottom: 1.4rem;
+            font-size: 1.05rem;
+        }
+
+        .section-heading {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin: 3rem 0 1rem 0;
+            letter-spacing: -0.01em;
+            border-bottom: 1px solid #dad5cf;
+            padding-bottom: 0.3rem;
+        }
+
+        .section-heading small {
+            font-weight: 300;
+            font-size: 0.85rem;
+            color: #7a736c;
+            margin-left: 0.6rem;
+        }
+
+        .quote-callout {
+            background: #f0ece7;
+            padding: 1.2rem 1.8rem;
+            margin: 2rem 0;
+            border-radius: 0;
+            border-left: 4px solid #b3a496;
+            font-style: normal;
+            color: #2e2a27;
+        }
+
+        .quote-callout p {
+            margin-bottom: 0.4rem;
+            font-size: 1rem;
+        }
+
+        .quote-callout .source {
+            font-size: 0.85rem;
+            color: #5e5750;
+            margin-top: 0.5rem;
+        }
+
+        .inline-link {
+            color: #3f3a35;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #b3a496;
+            transition: color 0.2s;
+        }
+
+        .inline-link:hover {
+            color: #7b6a58;
+            text-decoration-color: #7b6a58;
+        }
+
+        .faq-mini {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed #d1cbc3;
+        }
+
+        .faq-mini dt {
+            font-weight: 500;
+            margin-top: 1.2rem;
+            font-size: 1.05rem;
+        }
+
+        .faq-mini dd {
+            margin-left: 0.6rem;
+            color: #3f3a35;
+            margin-top: 0.2rem;
+            font-size: 0.98rem;
+        }
+
+        .closing {
+            margin-top: 3.5rem;
+            padding: 1.8rem 0 0.5rem;
+            border-top: 1px solid #dad5cf;
+            font-size: 0.95rem;
+            color: #5e5750;
+        }
+
+        .closing a {
+            color: #3f3a35;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+        }
+
+        @media (max-width: 500px) {
+            body {
+                padding: 2rem 1.2rem 4rem;
+            }
+            .hero-title {
+                font-size: 1.8rem;
+                padding-left: 0.8rem;
+            }
+            .hero-sub {
+                padding-left: 1rem;
+                font-size: 0.9rem;
+            }
+            .section-heading {
+                font-size: 1.2rem;
+            }
+            .quote-callout {
+                padding: 1rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <h1 class="hero-title">pg模拟器</h1>
+        <div class="hero-sub">一份简明指南 · 从使用到感受</div>
+
+        <div class="text-block">
+            <p>如果你刚刚开始接触 <a href="https://zh-pgemu.com" class="inline-link">pg模拟器</a>，大概会被各种术语和版本信息绕晕。其实没有必要一开始就搞懂所有参数。这一篇指南只讲两件事：怎样开始，以及怎样判断它是否适合你。</p>
+        </div>
+
+        <h2 class="section-heading">从下载到第一屏 <small>· 三步</small></h2>
+        <div class="text-block">
+            <p>第一步，找到对应的安装包。官方站点提供的版本通常带有校验信息，建议下载后核对一下哈希值——不是必须，但能避免很多奇怪的问题。第二步，解压到一个没有中文路径的目录，这一点常常被忽略，却是一半启动失败的根源。第三步，双击可执行文件，看到终端或图形界面输出版本号，就说明核心已经跑起来了。</p>
+            <p>很多人在第二步卡住，原因是路径里包含了空格或特殊符号。如果你也遇到启动后闪退，先检查路径，再考虑依赖环境。这是经验之谈。</p>
+        </div>
+
+        <div class="quote-callout">
+            <p>“最好的模拟器不需要教程，但需要一份耐心。花十分钟读日志，比花一小时搜错误码更有效。”</p>
+            <div class="source">—— 来自一位使用 pg模拟器 三年的开发者</div>
+        </div>
+
+        <h2 class="section-heading">日常使用的几个习惯</h2>
+        <div class="text-block">
+            <p>我见过有人把 pg模拟器 当作一个黑盒，出了问题就重装。其实它内部有相当详细的日志输出，默认就开着。如果你愿意花五分钟看一遍启动日志，很多配置上的偏差自己就能修正。</p>
+            <p>另一个常见的误区是追求“最新版本”。对于模拟器来说，稳定版本的兼容性往往优于最新版。除非你明确需要某个新特性，否则停留在上一个正式版反而更省心。当然，这取决于你的具体场景。</p>
+        </div>
+
+        <h2 class="section-heading">什么时候用它？</h2>
+        <div class="text-block">
+            <p>简单来说，当你想在本地快速搭建一个与生产环境高度一致的测试环境时，<a href="https://zh-pgemu.com" class="inline-link">pg模拟器</a> 是一个相当自然的选择。它不需要复杂的编排，也不必在容器和虚拟机之间做取舍。你需要的只是一个干净的目录和一份配置文件。</p>
+            <p>但它并不适合所有人。如果你的工作流重度依赖图形界面管理工具，或者你需要模拟几十个节点的分布式场景，那可能要考虑更重的方案。pg模拟器 擅长的是“小而准”——单个实例的行为足够逼真，但集群能力不是它的设计目标。</p>
+        </div>
+
+        <dl class="faq-mini">
+            <dt>问：模拟器会修改我系统里的真实数据库吗？</dt>
+            <dd>不会。它运行在独立的数据目录中，与系统已有的任何数据库服务完全隔离。你甚至可以把它放在 U 盘上带走。</dd>
+            <dt>问：配置文件和真实数据库通用吗？</dt>
+            <dd>大部分通用，但有些内核参数和扩展在模拟环境下表现略有不同。建议把模拟环境当作“近似参照”，而非 100% 复制。</dd>
+            <dt>问：对新手友好吗？</dt>
+            <dd>如果你愿意读一遍它的 README，前半小时会顺畅很多。如果想要开箱即用，可能需要一点基础。</dd>
+        </dl>
+
+        <div class="closing">
+            <p>pg模拟器 不是万能钥匙，但如果你需要一个安静、可控、可复现的本地环境，它值得你花一个下午去熟悉。上面提到的那些注意事项，大多来自社区里反复出现的提问。如果你遇到了文档里没有的情况，试着用英文关键词去搜索——很多答案其实已经存在很多年了。</p>
+            <p style="margin-top: 1.5rem;">关于访问：你随时可以前往 <a href="https://zh-pgemu.com">pg模拟器</a> 的页面，那里有最新的版本和文档索引。记得核对校验值。</p>
+        </div>
+    </div>
+</body>
+</html>
